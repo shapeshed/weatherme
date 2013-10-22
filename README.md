@@ -8,19 +8,14 @@ Weatherme is a simple command line tool to show weather from forecast.io
 
 ## Usage
 
-You need a forecast.io token. You can get one from the forecast.io [developer site][1].
+Set a forecast.io token and a long / lat with environment variables
 
-You need the latitude and longitude co-ordinates for the location you want.
+    export KEY=17b1e3cae7b68e290654b438553def7e
+    export LATLON=51.8498698,-0.6637842
 
-    curl "http://maps.googleapis.com/maps/api/geocode/json?address=Cheddington,UK&sensor=true"
+Then get the weather with
 
-If you prefer a GUI for this you can also use [Get Lat Lon][2].
-
-With a token and lat lon co-ordinates you do 
-
-    KEY=17b1e3cae7b68e290654b438553def7e LATLON=51.8498698,-0.6637842 weatherme
-
-If you don't want to type these each time add them as permanent environment variables to your shell. 
+    weatherme
 
 ## Options
 
@@ -28,6 +23,3 @@ If you don't want to type these each time add them as permanent environment vari
     -c        # show temperature in Celsius
 
 For more see `man weatherme`.
-    
-[1]: https://developer.forecast.io/
-[2]: http://dbsgeo.com/latlon/
