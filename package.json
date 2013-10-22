@@ -6,7 +6,7 @@
     "weather",
     "forecast.io",
     "cli"
-  ]
+  ],
   "main": "index.js",
   "bin": {
     "weatherme": "./index.js"
