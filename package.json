@@ -1,0 +1,30 @@
+{
+  "name": "weatherme",
+  "version": "0.0.0",
+  "description": "A command line tool to provide weather from forecast.io",
+  "main": "index.js",
+  "bin": {
+    "weatherme": "./index.js"
+  },
+  "directories": {
+    "man": "./man"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shapeshed/stringbean.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shapeshed/weatherme/issues"
+  },
+  "author": {
+    "name": "George Ornbo",
+    "email": "george@shapeshed.com",
+    "url": "http://shapeshed.com/"
+  },
+  "licenses": [
+    {
+    "type": "MIT",
+    "url": "https://github.com/shapeshed/weatherme/raw/master/LICENSE"
+    }
+  ]
+}
