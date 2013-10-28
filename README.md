@@ -24,13 +24,22 @@ For more see `man weatherme`.
 
 Get a [forecast.io api key][1] and the [lat-long co-ordinates][2] for the location you want.
 
-    weatherme -k 17b1e3cae7b68e290654b438553def7e -l 51.8498698,-0.6637842
+    ♣ weatherme -k 17b1e3cae7b68e290654b438553def7e -l 51.8498698,-0.6637842
 
 Data is separated by the pipe symbol allowing formatting by a range of UNIX tools. In this example the API key and lat long co-ordinates are set as environment variables and piped to the [column][3] command.
 
-    export KEY=17b1e3cae7b68e290654b438553def7e
-    export LATLON=51.8498698,-0.6637842
-    weatherme -cd | column -s '|' -t
+    ♣ export KEY=17b1e3cae7b68e290654b438553def7e
+    ♣ export LATLON=51.8498698,-0.6637842
+    ♣ weatherme -cd | column -s '|' -t
+    Date      Max °C    Min °C    Summary
+    28 Oct    15        8         Windy in the morning, with rain until afternoon.
+    29 Oct    10        6         Partly cloudy in the morning.
+    30 Oct    12        4         Mostly cloudy starting in the afternoon.
+    31 Oct    12        9         Mostly cloudy throughout the day.
+    01 Nov    12        8         Light rain starting in the afternoon.
+    02 Nov    13        8         Light rain in the evening.
+    03 Nov    12        8         Drizzle in the evening.
+    04 Nov    9         6         Light rain until afternoon.
 
 ## Examples
 
