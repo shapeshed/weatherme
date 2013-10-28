@@ -1,19 +1,42 @@
 .TH WEATHERME 1 
 .SH NAME
 weatherme \- show weather from forecast.io 
-.SH DESCRIPTION
-.B weatherme
-shows weather from forecast.io. It expects a forecast.io api key to be set via the KEY environment variable and for a latitude and longitude to be set via the LATLON environment variable. 
 .SH SYNOPSIS
 .B weatherme 
 .RB [ \-c ]
+.RB [ \-m ]
+.RB [ \-h ]
+.RB [ \-d ]
+.RB [ \-s ]
+.RB [ \-k 
+.IR apikey ]
+.RB [ \-l 
+.IR latlon ]
 .SH DESCRIPTION
 .B weatherme
-displays weather from forecast.io
+Weatherme shows data from forecast.io in the console. 
 .SH OPTIONS
 .TP
 .B \-c
 display temperature in Celsius
+.TP
+.B \-m
+display minutely data
+.TP
+.B \-h
+display hourly data
+.TP
+.B \-d
+display daily data
+.TP
+.B \-s
+display only a summary
+.TP
+.BI \-k " apikey"
+the forecast.io api key. This may also be set by the KEY environment variable
+.TP
+.BI \-l " latlon"
+the long lat co-ordinates for the location. This may also be set by the LATLON environment variable
 .SH AUTHORS
 See the LICENSE file for the authors.
 .SH LICENSE

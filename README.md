@@ -8,18 +8,96 @@ Weatherme is a simple command line tool to show weather from forecast.io
 
 ## Usage
 
-Set a forecast.io token and a long / lat with environment variables
+Get a [forecast.io api key][1] and the [lat-long co-ordinates][2] for the location you want.
+
+    weatherme -k 17b1e3cae7b68e290654b438553def7e -l 51.8498698,-0.6637842
+
+Data is separated by the pipe symbol allowing formatting by a range of UNIX tools. In this example the API key and lat long co-ordinates are set as environment variables and piped to the 
 
     export KEY=17b1e3cae7b68e290654b438553def7e
     export LATLON=51.8498698,-0.6637842
-
-Then get the weather with
-
-    weatherme
+    weatherme -cd | column -s '|' -t
 
 ## Options
 
-    -h --help # show help
-    -c        # show temperature in Celsius
+    --help    # show help
+    -c        # display temperature in Celsius
+    -m        # display minutely data
+    -h        # display hourly data
+    -d        # display daily data
+    -s        # display only a summary
+    -k apikey # the forecast.io api key. This may also be set by the KEY environment variable
+    -l latlog # the long lat co-ordinates for the location. This may also be set by the LATLON environment
+    variable
 
 For more see `man weatherme`.
+
+## Examples
+
+These examples assume the environment variables KEY and LATLON have been set.
+
+### Show a summary of current weather
+
+    ♣ weatherme
+    It is currently 53°F and Partly Cloudy
+
+### Show a summary of current weather in Celsius
+
+    ♣ weatherme -c
+    It is currently 11°C and Partly Cloudy
+
+### Show a table of minutely data
+
+    ♣  weatherme -m | column -s '|' -t
+    Time     Precipitation Intensity %    Precipitation Probability %
+    1501     11                           2
+    1502     12                           3
+    1503     10                           1
+    1504     12                           2
+    1505     13                           2
+    1506     15                           2
+    1507     19                           2
+
+### Show a minutely summary
+
+    ♣  weatherme -ms                  
+    Drizzle starting in 45 min., stopping 11 min. later.
+
+### Show a table of hourly data
+
+    ♣  weatherme -h | column -s '|' -t 
+    Time     °F    Summary
+    15:00    53    Partly Cloudy
+    16:00    52    Drizzle
+    17:00    51    Partly Cloudy
+    18:00    49    Partly Cloudy
+    19:00    48    Clear
+    20:00    47    Partly Cloudy
+    21:00    47    Partly Cloudy
+    22:00    47    Partly Cloudy
+
+### Show an hourly summary
+
+    ♣  weatherme -hs
+    Partly cloudy until tomorrow morning.
+
+### Show a table of daily data
+
+    ♣  weatherme -d | column -s '|' -t
+    Date      Max °F    Min °F    Summary
+    28 Oct    60        46        Windy in the morning, with rain until afternoon.
+    29 Oct    51        43        Partly cloudy in the morning.
+    30 Oct    55        40        Mostly cloudy starting in the afternoon.
+    31 Oct    55        49        Mostly cloudy throughout the day.
+    01 Nov    54        46        Light rain starting in the afternoon.
+    02 Nov    56        47        Light rain in the evening.
+    03 Nov    53        47        Drizzle in the evening.
+    04 Nov    49        43        Light rain until afternoon.
+
+### Show an daily summary
+
+    ♣  weatherme -ds
+    Light rain off-and-on throughout the week; temperatures falling to 51° tomorrow.
+
+[1]: https://developer.forecast.io/
+[2]: http://dbsgeo.com/latlon/
