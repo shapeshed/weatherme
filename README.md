@@ -12,7 +12,7 @@ Get a [forecast.io api key][1] and the [lat-long co-ordinates][2] for the locati
 
     weatherme -k 17b1e3cae7b68e290654b438553def7e -l 51.8498698,-0.6637842
 
-Data is separated by the pipe symbol allowing formatting by a range of UNIX tools. In this example the API key and lat long co-ordinates are set as environment variables and piped to the 
+Data is separated by the pipe symbol allowing formatting by a range of UNIX tools. In this example the API key and lat long co-ordinates are set as environment variables and piped to the [column][3] command.
 
     export KEY=17b1e3cae7b68e290654b438553def7e
     export LATLON=51.8498698,-0.6637842
@@ -101,3 +101,4 @@ These examples assume the environment variables KEY and LATLON have been set.
 
 [1]: https://developer.forecast.io/
 [2]: http://dbsgeo.com/latlon/
+[3]: http://linux.die.net/man/1/column
