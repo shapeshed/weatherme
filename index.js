@@ -1,37 +1,41 @@
 #!/usr/bin/env node
 
-var request = require('./lib/request'),
+var request = require('request'),
+  argv = require('optimist').argv,
+  parser = require('./lib/parser'),
   unit = '°F',
-  args = process.argv.splice(2),
-  key = process.env.KEY || null,
-  latLon = process.env.LATLON || null;
+  key = argv.k || process.env.KEY || null,
+  latLon = argv.l || process.env.LATLON || null;
 
-if ((args.indexOf('--help') !== -1) || (args.indexOf('-h') !== -1)) {
-  var help = "Usage: weatherme [OPTION]\n\
-  Show weather from forecast.io based on [OPTION].\n\
-  -c\tDisplay temperature in Celsius";
+var help = "Usage: weatherme [OPTION]\n\
+Show weather from forecast.io based on [OPTION].\n\
+  -c\t\t\tDisplay temperature in Celsius\n\
+  -m\t\t\tDisplay minutely data\n\
+  -h\t\t\tDisplay hourly data\n\
+  -d\t\t\tDisplay daily data\n\
+  -s\t\t\tDisplay only a summary\n\
+  -k=KEY\t\tThe forecast.io api key\n\
+  -l=LATLON\t\tThe long lat co-ordinates for the location";
 
+if (argv.help) {
   console.log(help);
   process.exit(0);
 }
 
 if ((key === null) || latLon === null)  {
   console.error('Missing forecast.io API key and lat/lon co-ordinates');
-  console.error('Usage: KEY=17b1e3cae7b68e290654b438553def7e LATLON=51.8498698,-0.6637842 weatherme');
+  console.error(help);
   process.exit(1);
 }
 
-var options = {
-  host: 'api.forecast.io',
-  path: '/forecast/' + key + '/' + latLon
-};
+var apiEndPoint = 'https://api.forecast.io/forecast/' + key + '/' + latLon;
 
-if (args.indexOf('-c') !== -1) {
-  options.path = options.path + '?units=si';
+if (argv.c) {
+  apiEndPoint = apiEndPoint + '?units=si';
   unit = '°C';
 }
 
-request.get(options, function(err, res, body) {
+request.get(apiEndPoint, function(err, res, body) {
   if (err) { throw err; }
 
   if (res.statusCode !== 200) {
@@ -41,10 +45,18 @@ request.get(options, function(err, res, body) {
 
   try {
     var data = JSON.parse(body);
-    console.log("It is currently " + data.currently.temperature + unit + ' and ' + data.currently.summary);
+    if (argv.m) {
+      console.log(parser.minutely(data, unit, argv));
+    } else if (argv.h) {
+      console.log(parser.hourly(data, unit, argv));
+    } else if (argv.d) {
+      console.log(parser.daily(data, unit, argv));
+    } else {
+      console.log(parser.currently(data, unit, argv));
+    }
     process.exit(0);
-
   } catch (e) {
+    console.log(e);
     console.error('unabled to parse weather data');
     process.exit(1);
   }
