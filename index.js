@@ -30,7 +30,7 @@ if ((key === null) || latLon === null)  {
 
 var apiEndPoint = 'https://api.forecast.io/forecast/' + key + '/' + latLon;
 
-if (argv.c) {
+if (argv.c || process.env.unit && process.env.unit.toLowerCase() === 'c') {
   apiEndPoint = apiEndPoint + '?units=si';
   unit = '°C';
 }
