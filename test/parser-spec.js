@@ -32,12 +32,6 @@ describe('hourly method', function () {
     assert.strictEqual(parser.hourly(response, '°F', argv), 'Light rain until later this afternoon, starting again tonight.');
   });
 
-  it('should return the correct string ', function () {
-    var argv = {};
-    console.log(parser.hourly(response, '°F', argv));
-    assert.strictEqual(parser.hourly(response, '°F', argv), 'Light rain until later this afternoon, starting again tonight.');
-  });
-
 });
 
 describe('daily method', function () {
