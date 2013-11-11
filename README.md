@@ -1,5 +1,7 @@
 # Weatherme
 
+[![Build Status](https://secure.travis-ci.org/shapeshed/weatherme.png)](http://travis-ci.org/shapeshed/weatherme)
+
 Weatherme is a simple command line tool to show weather from forecast.io
 
 ## Installation
