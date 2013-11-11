@@ -19,12 +19,21 @@
     "optimist": "0.6.0",
     "request": "2.27.0"
   },
+  "devDependencies": {
+    "mocha": "1.14.0",
+    "grunt": "0.4.1",
+    "grunt-contrib-jshint": "0.7.1",
+    "grunt-mocha-test": "0.7.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/shapeshed/weatherme.git"
   },
   "bugs": {
     "url": "https://github.com/shapeshed/weatherme/issues"
+  },
+  "scripts": {
+    "test": "grunt --stack build"
   },
   "author": {
     "name": "George Ornbo",
