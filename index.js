@@ -3,7 +3,7 @@
 var request = require('request'),
   argv = require('optimist').argv,
   parser = require('./lib/parser'),
-  unit = '°F',
+  unit = (process.env.WEATHERME_UNITS !== 'us' || argv.c) ? '°C' : '°F',
   key = argv.k || process.env.KEY || null,
   latLon = argv.l || process.env.LATLON || null;
 
@@ -31,8 +31,9 @@ if ((key === null) || latLon === null)  {
 var apiEndPoint = 'https://api.forecast.io/forecast/' + key + '/' + latLon;
 
 if (argv.c) {
-  apiEndPoint = apiEndPoint + '?units=si';
-  unit = '°C';
+  apiEndPoint += '?units=si';
+} else if (process.env.WEATHERME_UNITS) {
+  apiEndPoint += '?units=' + process.env.WEATHERME_UNITS;
 }
 
 request.get(apiEndPoint, function(err, res, body) {
