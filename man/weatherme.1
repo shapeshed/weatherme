@@ -3,7 +3,7 @@
 weatherme \- show weather from forecast.io 
 .SH SYNOPSIS
 .B weatherme 
-.RB [ \-c ]
+.RB [ \-u ]
 .RB [ \-m ]
 .RB [ \-h ]
 .RB [ \-d ]
@@ -17,8 +17,8 @@ weatherme \- show weather from forecast.io
 Weatherme shows data from forecast.io in the console. 
 .SH OPTIONS
 .TP
-.B \-c
-display temperature in Celsius
+.B \-u " weatherme_units"
+display temperature using forecase.io units i.e. us, uk, ca, si or auto based on LATLON. This may also be set by the WEATHERME_UNITS environment variable
 .TP
 .B \-m
 display minutely data

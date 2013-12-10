@@ -3,13 +3,13 @@
 var request = require('request'),
   argv = require('optimist').argv,
   parser = require('./lib/parser'),
-  unit = (process.env.WEATHERME_UNITS !== 'us' || argv.c) ? '°C' : '°F',
+  unit = argv.u || process.env.WEATHERME_UNITS || null,
   key = argv.k || process.env.KEY || null,
   latLon = argv.l || process.env.LATLON || null;
 
 var help = "Usage: weatherme [OPTION]\n\
 Show weather from forecast.io based on [OPTION].\n\
-  -c\t\t\tDisplay temperature in Celsius\n\
+  -u=WEATHERME_UNITS\tUse forecast.io units i.e. us, uk, ca, si or auto\n\
   -m\t\t\tDisplay minutely data\n\
   -h\t\t\tDisplay hourly data\n\
   -d\t\t\tDisplay daily data\n\
@@ -30,10 +30,10 @@ if ((key === null) || latLon === null)  {
 
 var apiEndPoint = 'https://api.forecast.io/forecast/' + key + '/' + latLon;
 
-if (argv.c) {
-  apiEndPoint += '?units=si';
-} else if (process.env.WEATHERME_UNITS) {
-  apiEndPoint += '?units=' + process.env.WEATHERME_UNITS;
+if (unit) {
+  apiEndPoint += '?units=' + unit;
+} else {
+  apiEndPoint += '';
 }
 
 request.get(apiEndPoint, function(err, res, body) {
@@ -46,14 +46,16 @@ request.get(apiEndPoint, function(err, res, body) {
 
   try {
     var data = JSON.parse(body);
+    var degrees = (data.flags.units !== 'us') ? '°C' : '°F';
+
     if (argv.m) {
-      console.log(parser.minutely(data, unit, argv));
+      console.log(parser.minutely(data, degrees, argv));
     } else if (argv.h) {
-      console.log(parser.hourly(data, unit, argv));
+      console.log(parser.hourly(data, degrees, argv));
     } else if (argv.d) {
-      console.log(parser.daily(data, unit, argv));
+      console.log(parser.daily(data, degrees, argv));
     } else {
-      console.log(parser.currently(data, unit, argv));
+      console.log(parser.currently(data, degrees, argv));
     }
     process.exit(0);
   } catch (e) {
