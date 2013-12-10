@@ -21,6 +21,8 @@ Weatherme is a simple command line tool to show weather from forecast.io
     -l latlog # the long lat co-ordinates for the location. This may also be set by the LATLON environment
     variable
 
+    you can set the default temperature by setting the WEATHERME_UNITS to one of: us, si, ca, uk, auto
+
 For more see `man weatherme`.
 
 ## Usage
