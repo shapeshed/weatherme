@@ -40,6 +40,13 @@
     "email": "george@shapeshed.com",
     "url": "http://shapeshed.com/"
   },
+  "contributors": [
+    {
+      "name": "Milan Magudia",
+      "email": "milan@magudia.com",
+      "url": "http://www.maguida.com"
+    }
+  ],
   "licenses": [
     {
       "type": "MIT",
