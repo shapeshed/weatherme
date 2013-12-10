@@ -4,8 +4,8 @@ var request = require('request'),
   argv = require('optimist').argv,
   parser = require('./lib/parser'),
   unit = argv.u || process.env.WEATHERME_UNITS || null,
-  key = argv.k || process.env.KEY || null,
-  latLon = argv.l || process.env.LATLON || null;
+  key = argv.k || process.env.WEATHERME_KEY || null,
+  latLon = argv.l || process.env.WEATHERME_LATLON || null;
 
 var help = "Usage: weatherme [OPTION]\n\
 Show weather from forecast.io based on [OPTION].\n\
