@@ -9,7 +9,7 @@ var request = require('request'),
 
 var help = "Usage: weatherme [OPTION]\n\
 Show weather from forecast.io based on [OPTION].\n\
-  -u=WEATHERME_UNITS\tUse forecast.io units i.e. us, uk, ca, si or auto\n\
+  -u=\t\t\tforecast.io units - us, uk, ca, si or auto\n\
   -m\t\t\tDisplay minutely data\n\
   -h\t\t\tDisplay hourly data\n\
   -d\t\t\tDisplay daily data\n\
