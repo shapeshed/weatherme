@@ -12,13 +12,13 @@ Weatherme is a simple command line tool to show weather from forecast.io
 ## Options
 
     --help    # show help
-    -c        # display temperature in Celsius
+    -u        # set forecast.io units - us, uk, ca, si or auto
     -m        # display minutely data
     -h        # display hourly data
     -d        # display daily data
     -s        # display only a summary
-    -k apikey # the forecast.io api key. This may also be set by the KEY environment variable
-    -l latlog # the long lat co-ordinates for the location. This may also be set by the LATLON environment
+    -k apikey # the forecast.io api key. This may also be set by the WEATHERME_KEY environment variable
+    -l latlog # the long lat co-ordinates for the location. This may also be set by the WEATHERME_LATLON environment
     variable
 
     you can set the default temperature by setting the WEATHERME_UNITS to one of: us, si, ca, uk, auto
@@ -33,8 +33,8 @@ Get a [forecast.io api key][1] and the [lat-long co-ordinates][2] for the locati
 
 Data is separated by the pipe symbol allowing formatting by a range of UNIX tools. In this example the API key and lat long co-ordinates are set as environment variables and piped to the [column][3] command.
 
-    ♣ export KEY=17b1e3cae7b68e290654b438553def7e
-    ♣ export LATLON=51.8498698,-0.6637842
+    ♣ export WEATHERME_KEY=17b1e3cae7b68e290654b438553def7e
+    ♣ export WEATHERME_LATLON=51.8498698,-0.6637842
     ♣ weatherme -cd | column -s '|' -t
     Date      Max °C    Min °C    Summary
     28 Oct    15        8         Windy in the morning, with rain until afternoon.
@@ -48,7 +48,7 @@ Data is separated by the pipe symbol allowing formatting by a range of UNIX tool
 
 ## Examples
 
-These examples assume the environment variables KEY and LATLON have been set.
+These examples assume the environment variables WEATHERME_KEY and WEATHERME_LATLON have been set.
 
 ### Show a summary of current weather
 
